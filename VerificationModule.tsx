@@ -41,11 +41,11 @@ export default function VerificationModule({isAlreadyVerified = false}: {isAlrea
         if (detection) {
           const age = Math.round(detection.age);
           // Using a 2-year buffer to account for estimation inaccuracies
-          setStatus(`Verification successful! ${age > 16 ? ` Estimated age is ${age}. You can use NSFW characters.` : 'Verification failed. Estimated age is under 18. You cannot use NSFW characters.'}`);
+          setStatus(`Verification successful! ${age > 16 ? ` Estimated age is ${age}. You can use NSFW characters.` : ' Estimated age is under 18. You cannot use NSFW characters.'}`);
           (videoRef.current.srcObject as MediaStream).getTracks().forEach(t => t.stop());
           clearInterval(interval);
           setVerified(true);
-          await verifyAge(age); // Call server-side verification function
+          await verifyAge(age > 16); // Call server-side verification function
         }
       }
     }, 2000); // Check every 2 seconds
@@ -68,7 +68,7 @@ export default function VerificationModule({isAlreadyVerified = false}: {isAlrea
         )}
       <div className="mt-4 font-mono">{status}</div>
       </div>
-      <p className="text-sm mb-4 text-gray-400 max-w-sm">Face-based age verification happens completely locally on your device and personally identifiable information is never stored or transmitted. AICord only receives the verified age information. The source code of verification module is <a href="">open source</a>.</p>
+      <p className="text-sm mb-4 text-gray-400 max-w-sm">Face-based age verification happens completely locally on your device and personally identifiable information is never stored or transmitted. AICord only receives the verified age information. The source code of verification module is <a className='link' href="https://github.com/aicordapp/age-attestation">open source</a>.</p>
       
     </div>
   );
