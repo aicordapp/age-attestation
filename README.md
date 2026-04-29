@@ -20,3 +20,7 @@ This module utilizes `face-api.js` to perform local, in-browser biometric infere
 * Local Estimation: The browser loads pre-trained weights to estimate age based on facial landmarks.
 
 * Server-Side Attestation: The age estimation result is sent to a secure backend route.
+
+## SHA-256 Checksum of module
+`fdf37286b09d33f9dad287ed810bc22465ad2f0dd9be865ce3044290fe8f90f3`
+
